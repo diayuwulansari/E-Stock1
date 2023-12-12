@@ -123,7 +123,7 @@ return (
      </Center>
      
      <Center>
-     <Pressable onPress={() => navigation.navigate("")}>
+     <Pressable onPress={() => navigation.navigate("Concealer")}>
      <Image size={120} borderRadius={100} source={require('../assets/Consealer.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
@@ -133,7 +133,7 @@ return (
  <Stack space="2" alignItems="center" marginTop={7}>
    <HStack space="9" alignItems="center">
      <Center>
-     <Pressable onPress={() => navigation.navigate("")}>
+     <Pressable onPress={() => navigation.navigate("Eyeliner")}>
      <Image size={120} borderRadius={100} source={require('../assets/Eyeliner.jpeg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
