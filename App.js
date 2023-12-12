@@ -17,6 +17,8 @@ import BlushOn from "./screens/BlushOn";
 import DetailProduct from "./screens/detail-product";
 import Eyeliner from "./screens/Eyeliner";
 import Concealer from "./screens/Concealer";
+import Mascara from "./screens/Mascara";
+import Foundation from "./screens/Foundation";
 
 // Navigator Declaration
 const Stack = createNativeStackNavigator();
@@ -118,6 +120,16 @@ const App = () => {
           <Stack.Screen
             name="Eyeliner"
             component={Eyeliner}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Foundation"
+            component={Foundation}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Mascara"
+            component={Mascara}
             options={noHead}
           />
         </Stack.Navigator>
