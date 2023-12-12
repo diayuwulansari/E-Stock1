@@ -128,7 +128,7 @@ const HomeScreen = () => {
               bg="#FFEE93"
               _text={{ color: "#000000" }}
               onPress={() => {
-                // Tindakan yang akan diambil ketika tombol kedua ditekan
+                navigation.navigate("AddCategory");
               }}
             >
               Tambah Category
@@ -139,7 +139,7 @@ const HomeScreen = () => {
               bg="#FCF5C7"
               _text={{ color: "#000000" }}
               onPress={() => {
-                // Tindakan yang akan diambil ketika tombol ketiga ditekan
+                navigation.navigate("AddProduct");
               }}
             >
               Tambah Produk
