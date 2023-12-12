@@ -12,6 +12,8 @@ import Bestseller from "./screens/Bestseller";
 import HomeScreen from "./screens/Home";
 import AddCategory from "./screens/AddCategory";
 import AddProduct from "./screens/AddProduct";
+import Cushion from "./screens/cushion";
+import BlushOn from "./screens/BlushOn";
 
 // Navigator Declaration
 const Stack = createNativeStackNavigator();
@@ -88,6 +90,16 @@ const App = () => {
           <Stack.Screen
             name="Category"
             component={Category}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Cushion"
+            component={Cushion}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="BlushOn"
+            component={BlushOn}
             options={noHead}
           />
         </Stack.Navigator>
