@@ -101,13 +101,13 @@ return (
  <Stack space="2" alignItems="center" marginTop={7}>
    <HStack space="9" alignItems="center">
      <Center>
-     <Pressable onPress={() => navigation.navigate("")}>
+     <Pressable onPress={() => navigation.navigate("Foundation")}>
      <Image size={120} borderRadius={100} source={require('../assets/Foundation.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
      
      <Center>
-     <Pressable onPress={() => navigation.navigate("")}>
+     <Pressable onPress={() => navigation.navigate("Mascara")}>
      <Image size={120} borderRadius={100} source={require('../assets/Mascara.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>

@@ -42,6 +42,53 @@ const datas = [
         "https://down-id.img.susercontent.com/file/id-11134207-7qul9-ljd2qmt75u1jf7",
       content: content,
     },
+
+    {
+      id: 1,
+      title:
+        "Madame Gie Mascara Netizen - Make Up Maskara Tahan Air",
+      image:
+        "https://down-id.img.susercontent.com/file/id-11134207-7qukx-lih0v9t0v2723a",
+    },
+    {
+      id: 2,
+      title: "Madame Gie Mascara +62 - MakeUp Netizen Mascara Waterproof",
+      image:
+        "https://down-id.img.susercontent.com/file/56267f978d94cf92492e5825d2532d16",
+      product: "product 10",
+      content: content,
+    },
+    {
+      id: 3,
+      title:
+        "Madame Gie Gorgeous Wink Celebs Beauty Long Mascara - MakeUp Maskara Waterproof",
+      image:
+        "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//87/MTA-4080118/madame_gie_madame_gie_gorgeous_wink_celebs_maskara_full03.jpg",
+      content: content,
+    },
+    {
+      id: 4,
+      title: "Madame Gie Gorgeous Wink Celebs Pretty Thick - MakeUp Mascara Waterproof",
+      image:
+        "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//87/MTA-4080118/madame_gie_madame_gie_gorgeous_wink_celebs_maskara_full04.jpg",
+      content: content,
+    },
+    {
+      id: 5,
+      title:
+        "Madame Gie Gorgeous Wink Celebs Mascara Eyeliner 2 in 1 - MakeUp Waterproof",
+      image:
+        "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//catalog-image/92/MTA-143215733/brd-60517_madame-gie-maskara-series-gorgeous-series-silhouette-series-by-ailin-kosmetik_full05-dbdef0fb.jpg",
+      content: content,
+    },
+    {
+      id: 6,
+      title:
+        "Madame Gie Beauty Shape Browcara - MakeUp Mascara Alis",
+      image:
+        "https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//102/MTA-53827508/brd-20220_madame-gie-mascara-netizen-make-up-maskara-waterproof_full01.jpg",
+      content: content,
+    },
       
     ];
   
