@@ -14,6 +14,9 @@ import AddCategory from "./screens/AddCategory";
 import AddProduct from "./screens/AddProduct";
 import Cushion from "./screens/cushion";
 import BlushOn from "./screens/BlushOn";
+import DetailProduct from "./screens/detail-product";
+import Eyeliner from "./screens/Eyeliner";
+import Concealer from "./screens/Concealer";
 
 // Navigator Declaration
 const Stack = createNativeStackNavigator();
@@ -100,6 +103,21 @@ const App = () => {
           <Stack.Screen
             name="BlushOn"
             component={BlushOn}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Detail Product"
+            component={DetailProduct}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Concealer"
+            component={Concealer}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Eyeliner"
+            component={Eyeliner}
             options={noHead}
           />
         </Stack.Navigator>
