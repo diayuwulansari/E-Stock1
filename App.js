@@ -10,6 +10,8 @@ import Profile from "./screens/profile";
 import Category from "./screens/Category";
 import Bestseller from "./screens/Bestseller";
 import HomeScreen from "./screens/Home";
+import AddCategory from "./screens/AddCategory";
+import AddProduct from "./screens/AddProduct";
 
 // Navigator Declaration
 const Stack = createNativeStackNavigator();
@@ -77,6 +79,17 @@ const App = () => {
         <Stack.Screen name="Home" component={Tabs} options={noHead}/> 
         <Stack.Screen name="AboutUs" component={AboutUsScreen} options={noHead}/>
         <Stack.Screen name="Tabs" component={Tabs} options={noHead} />
+        <Stack.Screen name="AddCategory" component={AddCategory} options={noHead}/>
+          <Stack.Screen
+            name="AddProduct"
+            component={AddProduct}
+            options={noHead}
+          />
+          <Stack.Screen
+            name="Category"
+            component={Category}
+            options={noHead}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
