@@ -1,10 +1,59 @@
-import React from "react";
-import { Heading, Image, Text, Box, ScrollView, Button, HStack } from "native-base";
+import React, { useState, useEffect } from "react";
+import { Heading, Image, Text, Box, ScrollView, Button, HStack, Center } from "native-base";
+import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../components";
+import { getFirestore, collection, getDocs } from "@firebase/firestore";
+import app from "../src/utils/firebase";
 
 const HomeScreen = () => {
+
   const navigation = useNavigation();
+  const [highlight, setHighlight] = useState([])
+  useEffect(() => {
+    const db = getFirestore(app)
+    const categoriesCol = collection(db, "categories")
+    const productsCol = collection(db, "products")
+    const highlightFunc = async () => {
+      const categories = await getDocs(categoriesCol)
+      const products = await getDocs(productsCol)
+      setHighlight([
+        {
+          "name": "Category",
+          "description": "Total Jumlah Seluruh",
+          "icon": require('../assets/Category.png'),
+          "count": categories.size,
+          "color": "#F1AA7B"
+        },
+        {
+          "name": "Product",
+          "description": "Total Jumlah Seluruh",
+          "icon": require('../assets/Product.png'),
+          "count": products.size,
+          "color": "#FCE1E4"
+        }
+      ])
+    }
+    highlightFunc()
+  },[])
+
+  const menu = [
+    {
+      "to": "AboutUs",
+      "color": "#FFC09F",
+      "name": "About Us"
+    },
+    {
+      "to": "AddCategory",
+      "color": "#FFEE93",
+      "name": "Tambah Category"
+    },
+    {
+      "to": "AddProduct",
+      "color": "#FCF5C7",
+      "name": "Tambah Produk"
+    },
+  ]
   
   return (
   //fragmen untuk mengelompokkan jsx
@@ -35,61 +84,40 @@ const HomeScreen = () => {
         </Heading>
           
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} marginLeft={5}>
-          {/* Box Pertama */}
-            <Box w={"257"} h={151} mr={"4"} bg={"#F1AA7B"} borderRadius={8}>
-              <HStack>
-                <Image w="6" h="6" p="4" alt="Image Data 1" mb={"2"} margin={2} source={require('../assets/Category.png')} />
-                <Box>
-                  <Heading
-                    fontSize={"17"}
-                    margin={2}
-                    lineHeight={"xs"}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    color="#000000"
-                  >
-                    Total Jumlah Seluruh 
-                  </Heading>
-                  <Text fontSize={"17"} marginLeft={2} color="#000000"  fontWeight={"bold"}>
-                    Category
-                  </Text>
-                  <Text fontSize={"25"} color="#000000" marginTop={8} fontWeight={"bold"}>
-                    50
-                  </Text>
-                  <Text fontSize={"15"} color="#000000" >
-                    Category
-                  </Text>
-                </Box>
-              </HStack>
+          { highlight.length > 0 ? 
+            highlight.map((e, index) => (
+              <Box w={"257"}  mr={"4"} bg={e.color} borderRadius={8} key={index}>
+                <HStack>
+                  <Image w="6" h="6" p="2" alt={e.name} mb={"2"} margin={2} source={e.icon} />
+                  <Box>
+                    <Heading
+                      fontSize={"17"}
+                      margin={2}
+                      lineHeight={"xs"}
+                      ellipsizeMode="tail"
+                      numberOfLines={2}
+                      color="#000000"
+                    >
+                      {e.description}
+                    </Heading>
+                    <Text fontSize={"17"} marginLeft={2} color="#000000"  fontWeight={"bold"}>
+                      {e.name}
+                    </Text>
+                    <Text fontSize={"25"} color="#000000" marginTop={8} fontWeight={"bold"}>
+                      {e.count}
+                    </Text>
+                    <Text fontSize={"15"} color="#000000" >
+                      {e.name}
+                    </Text>
+                  </Box>
+                </HStack>
+              </Box>
+            ))
+            :
+            <Box style={{width: 257, flex: 1, justifyContent: "center"}}>
+              <ActivityIndicator size="large" color="#F1AA7B" />
             </Box>
-
-          {/* Box Kedua */}
-            <Box w={"257"} h={151} mr={"4"} bg={"#FCE1E4"} borderRadius={8}>
-              <HStack>
-                <Image w="6" h="6" p="4" alt="Image Data 1" mb={"2"} margin={2} source={require('../assets/Product.png')} />
-                <Box>
-                  <Heading
-                    fontSize={"17"}
-                    margin={2}
-                    lineHeight={"xs"}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    color="#000000"
-                  >
-                    Total Jumlah Seluruh 
-                  </Heading>
-                  <Text fontSize={"17"} marginLeft={2} color="#000000"  fontWeight={"bold"}>
-                    Product
-                  </Text>
-                  <Text fontSize={"25"} color="#000000" marginTop={8} fontWeight={"bold"}>
-                    50
-                  </Text>
-                  <Text fontSize={"15"} color="#000000">
-                    Product
-                  </Text>
-                </Box>
-              </HStack>
-            </Box>
+          }
         </ScrollView>
 
         {/* Bagian Button */}
@@ -111,39 +139,20 @@ const HomeScreen = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Button
-              w={"80%"}
-              margin={3}
-              bg="#FFC09F"
-              _text={{ color: "#000000" }}
-              onPress={() => {
-                navigation.navigate("AboutUs");
-              }}
-            >
-              About Us
-            </Button>
-            <Button
-              w={"80%"}
-              margin={3}
-              bg="#FFEE93"
-              _text={{ color: "#000000" }}
-              onPress={() => {
-                navigation.navigate("AddCategory");
-              }}
-            >
-              Tambah Category
-            </Button>
-            <Button
-              w={"80%"}
-              margin={3}
-              bg="#FCF5C7"
-              _text={{ color: "#000000" }}
-              onPress={() => {
-                navigation.navigate("AddProduct");
-              }}
-            >
-              Tambah Produk
-            </Button>
+            {menu.map((e, index) => (
+              <Button
+                w={"80%"}
+                margin={3}
+                bg={e.color}
+                _text={{ color: "#000000" }}
+                onPress={() => {
+                  navigation.navigate(e.to);
+                }}
+                key={"menu"+index}
+              >
+                {e.name}
+              </Button>
+            ))}
           </Box>
         </ScrollView>
       </Box>
