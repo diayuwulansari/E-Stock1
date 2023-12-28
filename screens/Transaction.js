@@ -26,7 +26,7 @@ const Transaction = ({route}) => {
     if (jumlah < jumlahProduk) return alert("Jumlah tidak boleh lebih besar dari stock !!")
     setIsLoading(true)
     const db = getFirestore(app)
-    const setChangeProduct = await updateDoc(doc(db, products/${id}), {qty: jenisTransaksi == "Masuk" ? jumlah + jumlahProduk : jumlah - jumlahProduk})
+    const setChangeProduct = await updateDoc(doc(db, `products/${id}`), {qty: jenisTransaksi == "Masuk" ? jumlah + jumlahProduk : jumlah - jumlahProduk})
     const addToDatabase = await addDoc(collection(db, "transactions"), {
       productId: id,
       qty: jumlahProduk,
