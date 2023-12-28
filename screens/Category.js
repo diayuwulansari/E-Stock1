@@ -1,29 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Heading, AspectRatio, Image, Text, Center, HStack, Stack, NativeBaseProvider,  Divider, Pressable,  ScrollView } from "native-base";
 import { useNavigation } from "@react-navigation/native";
+import { ActivityIndicator } from "react-native";
 import { ImageBackground } from 'react-native';
+import app from "../src/utils/firebase";
+import { getFirestore, collection, getDocs } from "@firebase/firestore";
 
 
-
-const Home = () => {
-  const navigation = useNavigation();
-
+const Categories = () => {
+const navigation = useNavigation();
+const [categories, setCategories] = useState([])
+useEffect(() => {
+  const db = getFirestore(app)
+  const categoriesCol = collection(db, "categories")
+  getDocs(categoriesCol)
+    .then(snapshot => setCategories(snapshot.docs.map(doc => doc.data())))
+},[])
 return (
-  <Box >
- 
- <ScrollView>
-  <Box alignItems="center">
-          <Box>
-        <AspectRatio w="100%" ratio={16 / 9}>
-         
-        <Box marginTop={100} marginLeft={5}>
-              <Heading color="white" bold size="xl">Kategori</Heading>
-              <Text color='white' fontSize="lg">Berikut adalah kategori produk yang ada</Text>
-          </Box>
-         
-        </AspectRatio>
-         
-          </Box>
+<NativeBaseProvider>
+  <ImageBackground source={require('../assets/bg.jpg')} style={{flex: 1}} >
+    <Center flex={1}>
+      <Box >
+        <ScrollView>
+          <Box alignItems="center">
+            <Box>
+              <AspectRatio w="100%" ratio={16 / 9}>
+                <Box marginTop={100} marginLeft={5}>
+                    <Heading color="white" bold size="xl">Kategori</Heading>
+                    <Text color='white' fontSize="lg">Berikut adalah kategori produk yang ada</Text>
+                </Box>
+              </AspectRatio>  
+            </Box>
           </Box>
 
           <Box rounded="3xl"   
@@ -101,13 +108,13 @@ return (
  <Stack space="2" alignItems="center" marginTop={7}>
    <HStack space="9" alignItems="center">
      <Center>
-     <Pressable onPress={() => navigation.navigate("Foundation")}>
+     <Pressable onPress={() => navigation.navigate("")}>
      <Image size={120} borderRadius={100} source={require('../assets/Foundation.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
      
      <Center>
-     <Pressable onPress={() => navigation.navigate("Mascara")}>
+     <Pressable onPress={() => navigation.navigate("")}>
      <Image size={120} borderRadius={100} source={require('../assets/Mascara.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
@@ -123,7 +130,7 @@ return (
      </Center>
      
      <Center>
-     <Pressable onPress={() => navigation.navigate("Concealer")}>
+     <Pressable onPress={() => navigation.navigate("")}>
      <Image size={120} borderRadius={100} source={require('../assets/Consealer.jpg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
@@ -133,7 +140,7 @@ return (
  <Stack space="2" alignItems="center" marginTop={7}>
    <HStack space="9" alignItems="center">
      <Center>
-     <Pressable onPress={() => navigation.navigate("Eyeliner")}>
+     <Pressable onPress={() => navigation.navigate("")}>
      <Image size={120} borderRadius={100} source={require('../assets/Eyeliner.jpeg')} alt="Alternate Text"/>
  </Pressable>
      </Center>
