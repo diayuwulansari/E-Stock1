@@ -12,10 +12,9 @@ import Bestseller from "./screens/Bestseller";
 import HomeScreen from "./screens/Home";
 import AddCategory from "./screens/AddCategory";
 import AddProduct from "./screens/AddProduct";
-import Cushion from "./screens/cushion";
-import BlushOn from "./screens/BlushOn";
+import CategoryProduct from "./screens/CategoryProduct";
+import Transaction from "./screens/Transaction";
 
-// Navigator Declaration
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -75,33 +74,17 @@ const App = () => {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-        <Stack.Screen name="Login" component={Login} options={noHead} /> 
-        <Stack.Screen name="SignUp" component={SignUp} options={noHead}/>   
-        <Stack.Screen name="Home" component={Tabs} options={noHead}/> 
-        <Stack.Screen name="AboutUs" component={AboutUsScreen} options={noHead}/>
-        <Stack.Screen name="Tabs" component={Tabs} options={noHead} />
-        <Stack.Screen name="AddCategory" component={AddCategory} options={noHead}/>
-          <Stack.Screen
-            name="AddProduct"
-            component={AddProduct}
-            options={noHead}
-          />
-          <Stack.Screen
-            name="Category"
-            component={Category}
-            options={noHead}
-          />
-          <Stack.Screen
-            name="Cushion"
-            component={Cushion}
-            options={noHead}
-          />
-          <Stack.Screen
-            name="BlushOn"
-            component={BlushOn}
-            options={noHead}
-          />
+        <Stack.Navigator initialRouteName="Login" >
+          <Stack.Screen name="Login" component={Login} options={noHead} /> 
+          <Stack.Screen name="SignUp" component={SignUp} options={noHead} />   
+          <Stack.Screen name="Home" component={Tabs} options={noHead} /> 
+          <Stack.Screen name="AboutUs" component={AboutUsScreen} options={noHead} />
+          <Stack.Screen name="Tabs" component={Tabs} options={noHead} />
+          <Stack.Screen name="AddCategory" component={AddCategory} options={noHead} />
+          <Stack.Screen name="AddProduct" component={AddProduct} options={noHead} />
+          <Stack.Screen name="Category" component={Category} options={noHead} />
+          <Stack.Screen name="CategoryProduct" component={CategoryProduct} options={noHead} />
+          <Stack.Screen name="Transaction" component={Transaction} options={noHead} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

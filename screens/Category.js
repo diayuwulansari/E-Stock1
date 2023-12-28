@@ -32,50 +32,150 @@ return (
               </AspectRatio>  
             </Box>
           </Box>
-          <Box rounded="3xl" _light={{backgroundColor: "white"}}>    
 
-            <Stack p="4" space={30}>
-              <Stack space={2}>
-                <Center>
-                  <Text fontSize="xl" marginBottom={4} color="#43270f" bold>
-                    category
-                  </Text>
-                  <Divider />
-                </Center>
+          <Box rounded="3xl"   
+  _light={{
+   backgroundColor: "white"
+ }}>
+    
+      <Stack p="4" space={30}>
+        <Stack space={2}>
+         <Center>
+         <Text fontSize="xl" marginBottom={4} color="#43270f" bold>
+           category
+         </Text>
+         <Divider />
+         </Center>
+        
+         <Box alignItems="center">
+   
 
-                <Box style={{
-                  flex: 1, 
-                  flexDirection: "row", 
-                  alignItems: "center", 
-                  columnGap: 20,
-                  rowGap: 20,
-                  justifyContent: "center", 
-                  flexWrap: "wrap",
-                }}> 
-                  { categories.length > 0 ?
-                    categories.map((data, index) => (
-                      <Center key={index}>
-                        <Pressable onPress={() => navigation.navigate("CategoryProduct", {category: data.name})}>
-                          <Image size={120} borderRadius={100} source={{uri: data.img}} alt="Alternate Text"/>
-                        </Pressable>
-                      </Center>
-                    ))
-                    :
-                    <Box style={{width: 257, flex: 1, justifyContent: "center", marginTop: 50, marginBottom: 50}}>
-                      <ActivityIndicator size="large" color="#F1AA7B" />
-                    </Box>
-                  }
-                </Box>
-              </Stack>
-            </Stack>
-          </Box>
-        </ScrollView>
-      </Box>
-    </Center>
-  </ImageBackground>
-</NativeBaseProvider>
+   
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     
+      <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} 
+     source={require('../assets/lip.jpg')} alt="Alternate Text"/>
+ </Pressable>
+ 
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} 
+     source={require('../assets/Eyeshadow.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     <Pressable onPress={() => navigation.navigate("Cushion")}>
+     <Image size={120} borderRadius={100} 
+     source={require('../assets/cushion.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("BlushOn")}>
+     <Image size={120} borderRadius={100} 
+     source={require('../assets/BlushOn.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Sunscreen.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/eyebroo.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Foundation.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Mascara.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/nail.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Consealer.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+
+ <Stack space="2" alignItems="center" marginTop={7}>
+   <HStack space="9" alignItems="center">
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Eyeliner.jpeg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+     
+     <Center>
+     <Pressable onPress={() => navigation.navigate("")}>
+     <Image size={120} borderRadius={100} source={require('../assets/Bedak.jpg')} alt="Alternate Text"/>
+ </Pressable>
+     </Center>
+   </HStack>
+ </Stack>
+ 
+ 
+ 
+
+ </Box>
+         </Stack>
+     </Stack>
+     
+     </Box>
+     </ScrollView>
+     </Box>
+     
 );
  
 };
 
- export default Categories
+ export default () => {
+     return (
+       <NativeBaseProvider>
+         <ImageBackground source={require('../assets/bg.jpg')} style={{flex: 1}} >
+         <Center flex={1}>
+             <Home />
+         </Center>
+         </ImageBackground>
+       </NativeBaseProvider>
+     );
+ };
