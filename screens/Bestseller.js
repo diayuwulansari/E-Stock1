@@ -22,7 +22,7 @@ const  BestSeller = () => {
       })
       let tempBestselling = []
       for (let id in Transactions){
-        let data = await getDoc(doc(db, products/${id}))
+        let data = await getDoc(doc(db, `products/${id}`))
         data = data.data()
         console.log(data)
         tempBestselling.push({img: data.img, name: data.name, total: Transactions[id]})
