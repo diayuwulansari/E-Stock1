@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 import { Center, Box, Heading, VStack, FormControl, Input, Link, Button, HStack, Text, Image } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import { auth } from '../src/utils/firebase';
 
-const Login = ({ navigation }) => { //komponen fungsional react, props 
+const Login = ({ navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (email === 'estock.com' && password === 'estock123') {
-      // Autentikasi berhasil, alihkan ke halaman "Home"
-      navigation.replace('Home'); // Gunakan replace agar pengguna tidak dapat kembali ke halaman login dengan menekan tombol "back"
-    } else {
-      // Autentikasi gagal, tampilkan pesan kesalahan
-      alert('Login gagal. Periksa email dan password Anda.');
-    }
-  };
-
-  const handleSignUp = () => {
-    // Alihkan pengguna ke halaman "Sign Up" saat tombol "Sign Up" ditekan
-    navigation.navigate('SignUp'); // Ganti "SignUp" dengan nama halaman sign-up yang sesuai.
+    auth.signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Handle successful login
+    })
+    .catch((error) => {
+      // Handle login error
+      console.log(error.message);
+    });
   };
 
   return (
@@ -42,22 +40,26 @@ const Login = ({ navigation }) => { //komponen fungsional react, props
         <VStack space={3} mt="5">
           <FormControl>
             <FormControl.Label>Email ID</FormControl.Label>
-            <Input value={email} onChangeText={(text) => setEmail(text)} />
+            <Input value={email} onChangeText={setEmail} />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input type="password" value={password} onChangeText={(text) => setPassword(text)} />
+            <Input type="password" value={password} onChangeText={setPassword} secureTextEntry />
           </FormControl>
           <Button mt="5" colorScheme="indigo" onPress={handleLogin}>
             Login
           </Button>
-          <HStack mt="6" justifyContent="center">
-            <Text fontSize="sm" color="coolGray.600" _dark={{ color: "warmGray.200" }}>
-              I'm a new user.{" "}
+
+          {/* Tautan untuk SignUp */}
+          <HStack justifyContent="center" mt="3">
+            <Text fontSize="md" color="coolGray.600">
+              Don't have an account?{' '}
             </Text>
-            <Link _text={{ color: "indigo.500", fontWeight: "medium", fontSize: "sm" }} onPress={handleSignUp}>
-              Sign Up
-            </Link>
+            <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+              <Text fontSize="md" color="indigo.500">
+                SignUp
+              </Text>
+            </TouchableOpacity>
           </HStack>
         </VStack>
       </Box>
