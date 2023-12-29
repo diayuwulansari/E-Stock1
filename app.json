@@ -4,11 +4,11 @@
     "slug": "UTS-E_Stock",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpg",
     "userInterfaceStyle": "light",
     "plugins": ["expo-image-picker"],
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashfinal.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -25,7 +25,7 @@
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.jpg"
     }
   }
 }
