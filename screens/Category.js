@@ -22,17 +22,20 @@ return (
     <Center flex={1}>
       <Box >
         <ScrollView>
-          <Box alignItems="center">
-            <Box>
-              <AspectRatio w="100%" ratio={16 / 9}>
-                <Box marginTop={100} marginLeft={5}>
-                    <Heading color="white" bold size="xl">Kategori</Heading>
-                    <Text color='white' fontSize="lg">Berikut adalah kategori produk yang ada</Text>
-                </Box>
-              </AspectRatio>  
-            </Box>
+          <Box alignItems="center" marginTop={10}>
+            <AspectRatio w="100%" ratio={16 / 9}>
+              <Box marginTop={5} marginLeft={5}>
+                <Heading color="white" bold size="xl">
+                  Kategori
+                </Heading>
+                <Text color="white" fontSize="lg">
+                  Berikut adalah kategori produk yang ada
+                </Text>
+              </Box>
+            </AspectRatio>
           </Box>
-          <Box rounded="3xl" _light={{backgroundColor: "white"}}>    
+        
+          <Box mt={-20} rounded="3xl" _light={{backgroundColor: "white"}}>    
 
             <Stack p="4" space={30}>
               <Stack space={2}>

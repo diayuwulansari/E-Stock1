@@ -1,22 +1,43 @@
 import React, { useState } from 'react';
-import { Center, Box, Heading, FormControl, Input, Button, Image, ScrollView } from 'native-base';
-import { auth } from '../src/utils/firebase';
+import { Center, View, Text, Box, Heading, FormControl, Input, Button, Image, ScrollView } from 'native-base';
+import { TouchableOpacity, Modal } from 'react-native';
+import { registerUser } from '../src/actions/AuthAction';
 
-const SignUp = () => {
+const Register = ({ navigation }) => {
   const [nama, setNama] = useState("");
+  const [email, setEmail] = useState("");
   const [nohp, setNohp] = useState("");
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
-  const handleSignUp = () => {
-    auth.createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        // Handle successful sign-up
-      })
-      .catch((error) => {
-        // Handle sign-up error
-        console.log(error.message);
-      });
+  const toggleAlert = (message) => {
+    setShowAlert(!showAlert);
+    setAlertMessage(message);
+  };
+
+  const onRegister = async () => {
+    if (nama && email && nohp && password) {
+      const data = {
+        nama: nama,
+        email: email,
+        nohp: nohp,
+        status: "user",
+      };
+
+      console.log(data);
+
+      try {
+        const user = await registerUser(data, password);
+        navigation.replace("Login");
+      } catch (error) {
+        console.log("Error", error.message);
+        toggleAlert(error.message);
+      }
+    } else {
+      console.log("Error", "Data tidak lengkap");
+      toggleAlert("Data tidak lengkap");
+    }
   };
 
   return (
@@ -82,15 +103,35 @@ const SignUp = () => {
 
             <Button
               mt="5" colorScheme="indigo"
-              onPress={handleSignUp}
+              onPress={() => { 
+                onRegister();
+              }}
               width={350} // Atur lebar sesuai yang diinginkan
               height={43} // Atur tinggi sesuai yang diinginkan
             >
               Sign Up
             </Button>
       </Box>
+
+      {/* Show Alert */}
+      <Modal
+        visible={showAlert}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => toggleAlert()}
+        >
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+            <View style={{ backgroundColor: '#fff', padding: 20, borderRadius: 8 }}>
+              <Text style={{ fontWeight: 'bold' }}>Error!</Text>
+              <Text>{alertMessage}</Text>
+              <TouchableOpacity onPress={() => toggleAlert()} style={{ marginTop: 10, backgroundColor: 'blue', padding: 8, alignItems: 'center', borderRadius: 5 }}>
+                <Text style={{ color: '#fff' }}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
     </Center>
   );
 };
 
-export default SignUp;
+export default Register;
