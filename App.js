@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, Text } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Login from "./screens/Login";
-import SignUp from "./screens/SignUp";
+import Register from "./screens/SignUp";
 import AboutUsScreen from "./screens/AboutUs";
 import Profile from "./screens/profile";
 import Category from "./screens/Category";
@@ -76,7 +76,7 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Login" >
           <Stack.Screen name="Login" component={Login} options={noHead} /> 
-          <Stack.Screen name="SignUp" component={SignUp} options={noHead} />   
+          <Stack.Screen name="SignUp" component={Register} options={noHead} />   
           <Stack.Screen name="Home" component={Tabs} options={noHead} /> 
           <Stack.Screen name="AboutUs" component={AboutUsScreen} options={noHead} />
           <Stack.Screen name="Tabs" component={Tabs} options={noHead} />

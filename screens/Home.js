@@ -4,14 +4,14 @@ import { ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../components";
 import { getFirestore, collection, getDocs } from "@firebase/firestore";
-import app from "../src/utils/firebase";
+import FIREBASE from "../src/utils/firebase";
 
 const HomeScreen = () => {
 
   const navigation = useNavigation();
   const [highlight, setHighlight] = useState([])
   useEffect(() => {
-    const db = getFirestore(app)
+    const db = getFirestore(FIREBASE)
     const categoriesCol = collection(db, "categories")
     const productsCol = collection(db, "products")
     const highlightFunc = async () => {

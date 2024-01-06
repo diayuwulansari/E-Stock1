@@ -1,21 +1,44 @@
 import React, { useState } from 'react';
-import { Center, Box, Heading, VStack, FormControl, Input, Link, Button, HStack, Text, Image } from 'native-base';
-import { TouchableOpacity } from 'react-native';
-import { auth } from '../src/utils/firebase';
+import { 
+  Center,
+  View,
+  Box,
+  Heading, 
+  VStack, 
+  FormControl, 
+  Input, 
+  Button, 
+  HStack, 
+  Text, 
+  Image,
+} from 'native-base';
+import { TouchableOpacity, Modal } from 'react-native';
+import { loginUser } from '../src/actions/AuthAction';
 
-const Login = ({ navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const Login = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
-  const handleLogin = () => {
-    auth.signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Handle successful login
-    })
-    .catch((error) => {
-      // Handle login error
-      console.log(error.message);
-    });
+  const toggleAlert = (message) => {
+    setShowAlert(!showAlert);
+    setAlertMessage(message);
+  };
+
+  const login = () => {
+    if (email && password) {
+      loginUser(email, password)
+        .then((user) => {
+          // Pengguna berhasil login, alihkan ke halaman Home
+          navigation.replace("Home");
+        })
+        .catch((error) => {
+          // Terjadi kesalahan saat login, tampilkan pesan kesalahan
+          console.log("Error", error.message);
+          toggleAlert(error.message);
+        });
+    }
   };
 
   return (
@@ -46,7 +69,7 @@ const Login = ({ navigation}) => {
             <FormControl.Label>Password</FormControl.Label>
             <Input type="password" value={password} onChangeText={setPassword} secureTextEntry />
           </FormControl>
-          <Button mt="5" colorScheme="indigo" onPress={handleLogin}>
+          <Button mt="5" colorScheme="indigo" onPress={() => login()}>
             Login
           </Button>
 
@@ -63,6 +86,24 @@ const Login = ({ navigation}) => {
           </HStack>
         </VStack>
       </Box>
+
+      {/* Show Alert */}
+      <Modal
+      visible={showAlert}
+      transparent={true}
+      animationType="fade"
+      onRequestClose={() => toggleAlert()}
+      >
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+          <View style={{ backgroundColor: '#fff', padding: 20, borderRadius: 8 }}>
+            <Text style={{ fontWeight: 'bold' }}>Error!</Text>
+            <Text>{alertMessage}</Text>
+            <TouchableOpacity onPress={() => toggleAlert()} style={{ marginTop: 10, backgroundColor: 'blue', padding: 8, alignItems: 'center', borderRadius: 5 }}>
+              <Text style={{ color: '#fff' }}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
     </Center>
   );
 };
